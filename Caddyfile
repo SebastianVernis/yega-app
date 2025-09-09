@@ -1,4 +1,8 @@
-yega.18.223.113.254.nip.io {
+yega.com.mx, www.yega.com.mx {
+    @www host www.yega.com.mx
+    redir @www https://yega.com.mx{uri} permanent
+
+    encode zstd gzip
     root * /var/www/yega/frontend/dist
     file_server
     
@@ -12,7 +16,12 @@ yega.18.223.113.254.nip.io {
 
     # Proxy API requests to the backend
     handle /api/* {
-        reverse_proxy localhost:5000
+        reverse_proxy localhost:5000 {
+            header_down Access-Control-Allow-Origin "https://yega.com.mx"
+            header_down Access-Control-Allow-Credentials "true"
+            header_down Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+            header_down Access-Control-Allow-Headers "Content-Type, Authorization"
+        }
     }
 
     # Fallback for SPA routing

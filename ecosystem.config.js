@@ -5,7 +5,8 @@ module.exports = {
     cwd: '/var/www/yega/backend',
     env_production: {
       NODE_ENV: 'production',
-      NODE_PATH: '/var/www/yega/backend/node_modules'
+      NODE_PATH: '/var/www/yega/backend/node_modules',
+      FRONTEND_URL: 'https://yega.com.mx'
     }
   }, {
     name: 'caddy',
