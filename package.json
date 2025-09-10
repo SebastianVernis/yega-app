@@ -4,18 +4,24 @@
   "description": "Backend for YEGA application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint controllers/ middleware/ models/ routes/ services/ utils/ server.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^5.13.20",
-    "cors": "^2.8.5",
-    "helmet": "^4.6.0",
-    "express-rate-limit": "^5.3.0",
-    "dotenv": "^10.0.0",
-    "jsonwebtoken": "^8.5.1",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.3.0",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.20",
     "nodemailer": "^6.6.3",
     "otp-generator": "^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.4.0"
   }
 }

@@ -1,4 +1,4 @@
-const path = require('path')
+
 const Usuario = require('../models/Usuario')
 
 const ALLOWED_BY_ROLE = {

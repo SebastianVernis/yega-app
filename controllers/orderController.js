@@ -570,7 +570,7 @@ exports.rateOrder = async (req, res) => {
 };
 
 // Funciones auxiliares
-function calcularCostoEnvio(subtotal, direccion) {
+function calcularCostoEnvio(subtotal) {
   // Lógica simple de costo de envío
   if (subtotal >= 50) return 0; // Envío gratis por compras mayores a $50
   return 5; // Costo fijo de envío

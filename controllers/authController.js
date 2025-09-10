@@ -1,7 +1,7 @@
 // backend/controllers/authController.js
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/Usuario');
-const OTPService = require('../services/otpService');
+
 
 // Generar JWT
 const generateToken = (id, rol) => {
@@ -184,7 +184,7 @@ exports.loginUser = async (req, res) => {
 // @access  Public
 exports.verifyOTP = async (req, res) => {
   try {
-    const { email, otp, telefono: telefonoBody, tipo = 'registro' } = req.body;
+    const { email, otp } = req.body;
 
     if (!email || !otp) {
       return res.status(400).json({ 

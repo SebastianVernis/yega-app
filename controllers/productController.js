@@ -1,6 +1,6 @@
 // backend/controllers/productController.js
 const Producto = require('../models/Producto');
-const Usuario = require('../models/Usuario');
+
 const mongoose = require('mongoose');
 
 // @desc    Obtener todos los productos con filtros y paginación
