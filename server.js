@@ -20,7 +20,7 @@ app.use(helmet({
 }));
 
 // CORS
-const frontendUrl = 'https://yega.com.mx';
+const frontendUrl = process.env.FRONTEND_URL || 'https://yega.com.mx';
 const allowedOrigins = frontendUrl === '*' ? '*' : frontendUrl.split(',').map(origin => origin.trim());
 
 // Rate limiting
