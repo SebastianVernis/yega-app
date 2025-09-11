@@ -1,4 +1,4 @@
-![YEGA Banner](https://via.placeholder.com/1200x300?text=YEGA+Backend)
+![YEGA Banner](./assets/img/logo.png)
 
 # YEGA Backend 
 
