@@ -1,4 +1,4 @@
-![YEGA Banner](./assets/img/logo.png)
+![YEGA Banner](./assets/img/5.png)
 
 # YEGA Backend 
 
