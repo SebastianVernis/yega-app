@@ -31,3 +31,4 @@ Este documento resume las tareas pendientes, las funcionalidades incompletas y l
 -   **Documentación de la API**: Generar documentación interactiva de la API utilizando herramientas como Swagger o OpenAPI para facilitar el desarrollo y las pruebas del frontend.
 -   **Optimización de Consultas a la Base de Datos**: Revisar las consultas a MongoDB y asegurarse de que se estén utilizando índices adecuados para mejorar el rendimiento, especialmente en las colecciones de pedidos y productos.
 -   **Manejo de Errores**: Estandarizar el manejo de errores en todo el backend para proporcionar respuestas de error consistentes y claras al frontend.
+-   **Análisis de Migración a MariaDB/MySQL**: Se ha creado un análisis sobre la posible migración de MongoDB a MariaDB/MySQL. Ver el documento `MIGRACION_MARIADB.md` para más detalles.
