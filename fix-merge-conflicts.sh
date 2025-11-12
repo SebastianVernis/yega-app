@@ -1,3 +1,59 @@
+#!/bin/bash
+
+# Script to automatically resolve merge conflicts
+# This script makes intelligent decisions based on the context
+
+echo "🔧 Fixing merge conflicts in critical files..."
+
+# Fix package.json - keep HEAD version with dependencies
+cat > /vercel/sandbox/package.json << 'EOF'
+{
+  "name": "manda2-app",
+  "version": "1.0.0",
+  "description": "Manda2 - Complete delivery platform",
+  "private": true,
+  "scripts": {
+    "install-deps": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "build:prod": "cd frontend && NODE_ENV=production npm run build",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "deploy": "npm run install-deps && npm run build:prod && pm2 restart ecosystem.config.js",
+    "logs": "pm2 logs",
+    "status": "pm2 status",
+    "stop": "pm2 stop ecosystem.config.js",
+    "restart": "pm2 restart ecosystem.config.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "mongodb": "^6.20.0"
+  }
+}
+EOF
+
+echo "✅ Fixed package.json"
+
+# Fix backend/.env - use HTTPS version for production
+cat > /vercel/sandbox/backend/.env << 'EOF'
+NODE_ENV=production
+PORT=5000
+JWT_SECRET=yE9A$k8mP2xR7nQ4wL6sF3gH1vB5tN9cJ8dK2mY7pX4zA6qW3eR9sT1uI5oP8lM0
+MONGODB_URI=mongodb://localhost:27017/yega
+FRONTEND_URL=https://yega.3.85.74.100.nip.io
+EMAIL_USER=contacto@yega.com.mx
+EMAIL_PASS=Svernis1
+EMAIL_HOST=smtp.ionos.mx
+EMAIL_PORT=465
+EOF
+
+echo "✅ Fixed backend/.env"
+
+# Fix Caddyfile - use port 5000 consistently
+cat > /vercel/sandbox/Caddyfile << 'EOF'
 {
     email admin@manda2.com.mx
 }
@@ -104,3 +160,16 @@ http://manda2.3.85.74.100.nip.io {
         try_files {path} /index.html
     }
 }
+EOF
+
+echo "✅ Fixed Caddyfile"
+
+echo ""
+echo "🎉 All merge conflicts resolved!"
+echo ""
+echo "Next steps:"
+echo "  1. Run: npm install"
+echo "  2. Run: cd backend && npm install"
+echo "  3. Run: cd frontend && npm install"
+echo "  4. Run: cd frontend && npm run build"
+echo "  5. Run: node test-deployment-status.js"
