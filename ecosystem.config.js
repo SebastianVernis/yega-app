@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'manda2-backend',
       script: 'server.js',
-      cwd: '/home/ec2-user/manda2-app/backend',
+      cwd: '/home/sebastianvernis/Desarrollo/Aplicaciones_Web/yega-app/backend',
       instances: 1,
       exec_mode: 'fork',
       env: {
@@ -17,21 +17,6 @@ module.exports = {
       time: true,
       restart_delay: 4000,
       max_restarts: 10
-    },
-    {
-      name: 'manda2-caddy',
-      script: 'caddy',
-      args: 'run --config Caddyfile',
-      cwd: '/home/ec2-user/manda2-app',
-      instances: 1,
-      exec_mode: 'fork',
-      env: {
-        NODE_ENV: 'production'
-      },
-      error_file: './logs/caddy-err.log',
-      out_file: './logs/caddy-out.log',
-      log_file: './logs/caddy-combined.log',
-      time: true
     }
   ]
 };

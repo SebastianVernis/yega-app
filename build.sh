@@ -7,7 +7,7 @@ set -e  # Exit on any error
 
 # Configuration
 NODE_ENV=${1:-production}
-ROOT_DIR="/home/ec2-user/manda2-app"
+ROOT_DIR="/home/sebastianvernis/Desarrollo/Aplicaciones_Web/yega-app"
 BACKEND_DIR="$ROOT_DIR/backend"
 FRONTEND_DIR="$ROOT_DIR/frontend"
 LOG_DIR="$ROOT_DIR/logs"

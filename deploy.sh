@@ -9,7 +9,7 @@ set -e  # Exit on any error
 WEBSERVER=""
 DOMAIN="localhost"
 SSL=false
-ROOT_DIR="/home/ec2-user/manda2-app"
+ROOT_DIR="/home/sebastianvernis/yega-app"
 
 # Parse arguments
 for arg in "$@"; do
@@ -137,9 +137,14 @@ case $WEBSERVER in
     caddy)
         echo "🌐 Starting Caddy..."
         if command_exists systemctl; then
-            sudo systemctl restart caddy || sudo caddy run --config Caddyfile &
+            sudo systemctl stop caddy 2>/dev/null || true
+            pkill -f "caddy run" 2>/dev/null || true
+            echo "Starting Caddy manually on port 8080..."
+            caddy run --config Caddyfile.local > /dev/null 2>&1 &
         else
-            sudo caddy run --config Caddyfile &
+            pkill -f "caddy run" 2>/dev/null || true
+            echo "Starting Caddy manually on port 8080..."
+            caddy run --config Caddyfile.local > /dev/null 2>&1 &
         fi
         ;;
         
@@ -165,7 +170,7 @@ else
 fi
 
 # Check frontend
-if curl -f -s http://localhost:80/ >/dev/null 2>&1; then
+if curl -f -s http://localhost:8080/ >/dev/null 2>&1; then
     echo "✅ Frontend is accessible"
 else
     echo "⚠️  Frontend health check failed"
@@ -175,8 +180,8 @@ echo ""
 echo "🎉 Deployment completed!"
 echo ""
 echo "📋 Access URLs:"
-echo "   Frontend: http://$DOMAIN"
-echo "   Backend API: http://$DOMAIN/api"
+echo "   Frontend: http://$DOMAIN:8080"
+echo "   Backend API: http://$DOMAIN:8080/api"
 echo ""
 echo "📊 Management commands:"
 echo "   Check status: pm2 status"

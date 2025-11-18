@@ -72,7 +72,9 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setLoading(true)
+      console.log('Enviando solicitud de login a:', apiClient.defaults.baseURL + '/auth/login')
       const response = await apiClient.post('/auth/login', { email, password })
+      console.log('Respuesta login recibida:', response.data)
       
       const { token: newToken, usuario } = response.data
       

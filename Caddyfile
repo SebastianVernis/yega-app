@@ -61,7 +61,7 @@ http://manda2.3.85.74.100.nip.io {
 # Development fallback (keep for local testing)
 :80 {
     encode zstd gzip
-    root * /home/ec2-user/manda2-app/frontend/dist
+    root * /home/sebastianvernis/Desarrollo/Aplicaciones_Web/yega-app/frontend/dist
     file_server
     
     # Security headers

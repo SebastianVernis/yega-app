@@ -102,10 +102,12 @@ exports.registerUser = async (req, res) => {
 // @access  Public
 exports.loginUser = async (req, res) => {
   try {
+    console.log('⚡ Login attempt received:', req.body.email);
     const { email, password } = req.body;
 
     // Validaciones básicas
     if (!email || !password) {
+      console.log('⚠️ Login failed: Missing email or password');
       return res.status(400).json({ 
         message: 'Email y contraseña son requeridos' 
       });
@@ -115,12 +117,14 @@ exports.loginUser = async (req, res) => {
     const usuario = await Usuario.findOne({ email }).select('+password');
 
     if (!usuario) {
+      console.log('⚠️ Login failed: User not found:', email);
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
     // Verificar contraseña
     const isMatch = await usuario.matchPassword(password);
     if (!isMatch) {
+      console.log('⚠️ Login failed: Invalid password for user:', email);
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
@@ -150,6 +154,8 @@ exports.loginUser = async (req, res) => {
     await usuario.save();
 
     const token = generateToken(usuario._id, usuario.rol);
+
+    console.log('✅ Login successful for:', email, 'with role:', usuario.rol);
 
     res.json({
       success: true,

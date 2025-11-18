@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UbicacionSchema = new mongoose.Schema({
-  latitud: { type: Number, required: true },
-  longitud: { type: Number, required: true },
+  latitud: { type: Number },
+  longitud: { type: Number },
   direccion: { type: String },
   timestamp: { type: Date, default: Date.now }
 }, { _id: false });

@@ -9,7 +9,7 @@ console.log('API client initialized with base URL:', API_BASE_URL);
 // Crear instancia de axios
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000, // Increased timeout
   headers: {
     'Content-Type': 'application/json',
   },
